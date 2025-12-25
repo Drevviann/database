@@ -21,16 +21,11 @@
 
 <nav class="navbar" id="navbar">
   <div style="display: flex; align-items: center; gap: 12px;">
-    <img src="https://i.pinimg.com/1200x/08/cd/6a/08cd6a17d0edc236d9263cc8b0b8ecd9.jpg" 
-         style="width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid white; object-fit: cover;">
-    
-    <div style="font-family: 'Orbitron'; font-weight: 700; color: #fff; font-size: 16px; letter-spacing: 1px;">
-      VIANN</span>
-      <i class="ri-verified-badge-fill verified" style="font-size: 16px;"></i>
-    </div>
+    <button class="btn-glass" style="display: flex; align-items: center; gap: 8px; padding: 0 15px; border-radius: 4px; height: 35px; font-family: 'Orbitron'; font-size: 13px; font-weight: 700; color: #fff; letter-spacing: 1px; border: 1.5px solid rgba(255,255,255,0.3);">
+      <i class="ri-user-received-2-line" style="font-size: 16px;"></i>
+      LOGIN
+    </button>
   </div>
-
-
 
   <div class="nav-actions">
     <button class="btn-glass" style="width: auto; padding: 0 10px; border-radius: 50%; height: 35px; font-size: 11px;">
@@ -53,7 +48,7 @@
       <h1 class="hero-title" id="hero-title">VIANN - QX</h1>
       <div class="hero-subtitle">
         <span class="dash-line"></span>
-        THE FUTURE IS ALGORITHM
+        THE FUTURE IS YOURS
         <span class="dash-line"></span>
       </div>
     </div>
@@ -82,13 +77,12 @@
     <div class="about-text">
       <h2>ABOUT ME</h2>
       <p>
-        Seorang manusia biasa yang hanya ingin menutupi status diri sendiri dan bersumpah untuk menjadi pribadi yang lebih baik kedepannya dan membangun masa depan yang layak di kemudian hari.
-      </p>
+        A common entity cloaking its status; sworn to personal evolution and the architecture of a worthy future.
       
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
         <div class="stat-box">
-          <span>TRADE FOCUS</span>
-          <b>$XAUUSD</b>
+          <span>TEAM ANALYSIS</span>
+          <b>TGS Group</b>
         </div>
         <div class="stat-box">
           <span>EXPERIENCE</span>
@@ -96,11 +90,11 @@
         </div>
         <div class="stat-box">
           <span>STATUS</span>
-          <b>ANONYMOUS</b>
+          <b>CO-FOUNDER</b>
         </div>
         <div class="stat-box">
           <span>LOCATION</span>
-          <b>0.0.0.0/0</b>
+          <b>UNKNOWN</b>
         </div>
       </div>
     </div>
@@ -185,7 +179,7 @@
         <div class="chart-header">
             <div class="header-left">
                 <i class="ri-stock-fill"></i>
-                <span class="title">ID_3320H1</span>
+                <span class="title">TERMINAL</span>
             </div>
             <div class="header-right">
                 <span class="tag">TERMINAL_V2.4.1</span>
@@ -208,6 +202,52 @@
     </div>
 </section>
 
+<section class="bloomberg-terminal">
+    <div class="bbg-container">
+        <div class="bbg-header">
+            <div class="bbg-logo">BLOOMBERG TERMINAL</div>
+            <div class="bbg-time" id="bbg-clock">00:00:00</div>
+        </div>
+
+        <div class="bbg-body">
+            <div class="bbg-panel left-main">
+                <div class="panel-title">GLOBAL_ASSETS</div>
+                <table class="bbg-table">
+                    <thead>
+                        <tr>
+                            <th>SECURITY</th>
+                            <th>BID</th>
+                            <th>ASK</th>
+                            <th>VOL</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bbg-market-data">
+                        </tbody>
+                </table>
+                     <div class="bbg-analytics-sub">
+              <div class="panel-title" style="border-top: 1px solid #333; padding-top: 10px; margin-top: 10px;">
+                 RT_ANALYTICS
+              </div>
+              <div class="bbg-chart-mini-wrapper">
+                  <canvas id="bbgLineChart"></canvas>
+              </div>
+          </div>
+            </div>
+       
+
+            <div class="bbg-panel right-news">
+    <div class="panel-title">ANNOUNCEMENT</div>
+    
+    <div class="bbg-news-scroll" id="user-news-feed">
+        </div>
+
+    <div class="bbg-chat-input-wrapper">
+        <span class="cmd-prefix"><i class="ri-terminal-box-line"></i></span>
+        <input type="text" id="bbg-input" class="bbg-input" placeholder="Send message..." autocomplete="off">
+    </div>
+</div>
+    </div>
+</section>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script src="app.js"></script>

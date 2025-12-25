@@ -10,6 +10,63 @@ document.addEventListener('mousemove', (e) => {
     }
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    // ... kode yang sudah ada ...
+
+    const mainTerminal = document.getElementById('terminal-output');
+    const warningTerminal = document.getElementById('warning-log');
+    const buttons = document.querySelectorAll('.ctrl-btn');
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const cmd = btn.innerText.trim();
+            
+            // Efek visual klik
+            btn.style.transform = "scale(0.95)";
+            setTimeout(() => btn.style.transform = "scale(1)", 100);
+
+            if (cmd === "OVERRIDE") {
+                addLog(mainTerminal, ">> MANUAL_OVERRIDE_INITIATED...", "#fff");
+                addLog(mainTerminal, ">> BYPASSING_SECURITY_LAYERS_01_TO_64", "#888");
+                addLog(warningTerminal, "[!] PROTOCOL_7_BYPASSED", "#ff4444");
+            } 
+            else if (cmd === "PURGE") {
+                addLog(mainTerminal, ">> PURGING_TEMP_MEMORY_BLOCKS...", "#fff");
+                addLog(mainTerminal, ">> 0x88FF_DELETED | 0x112A_DELETED", "#888");
+                addLog(warningTerminal, "[!] CACHE_FLUSH_SUCCESSFUL", "#ff4444");
+            }
+            else if (cmd === "SILENCE") {
+                addLog(mainTerminal, ">> SILENCING_INBOUND_ALERTS...", "#fff");
+                addLog(warningTerminal, "[!] ALARMS_DISABLED_BY_USER", "#ff4444");
+            }
+            else if (cmd === "SHUTDOWN") {
+                addLog(mainTerminal, ">> TERMINATING_ALL_SYSTEM_PROCESSES...", "#ff4444");
+                // Efek dramatis: layar bergetar atau teks hilang
+                document.body.style.filter = "invert(1)";
+                setTimeout(() => document.body.style.filter = "none", 200);
+                addLog(warningTerminal, "[FATAL] SYSTEM_SHUTDOWN_SEQUENCE_START", "#ff0000");
+            }
+        });
+    });
+});
+
+// Fungsi pembantu untuk menambah log secara manual
+function addLog(container, text, color) {
+    if (!container) return;
+    const line = document.createElement('div');
+    line.style.color = color;
+    line.innerHTML = `[${new Date().toLocaleTimeString('en-GB')}] ${text}`;
+    container.appendChild(line);
+    
+    // Auto-scroll ke bawah
+    container.scrollTop = container.scrollHeight;
+    
+    // Batasi jumlah baris agar tidak berat
+    if (container.children.length > 15) {
+        container.removeChild(container.children[0]);
+    }
+}
+
 window.addEventListener('scroll', function() {
     const scrollValue = window.scrollY;
 
@@ -298,3 +355,176 @@ document.addEventListener('DOMContentLoaded', () => {
     startHeroTerminal();
     // Fungsi lainnya tetap berjalan...
 });
+
+function initBloombergLogic() {
+    const marketTbody = document.getElementById('bbg-market-data');
+    const inputField = document.getElementById('bbg-input');
+    const newsContainer = document.getElementById('user-news-feed');
+
+    // 1. Fill Market Data (Bikin 12 baris agar penuh)
+    const assets = ["AAPL", "TSLA", "BTC", "ETH", "GOLD", "OIL", "US10Y", "USD/JPY", "NVDA", "AMZN", "MSFT", "GOOGL"];
+    
+    function updateMarket() {
+        if (!marketTbody) return;
+        marketTbody.innerHTML = '';
+        assets.forEach(asset => {
+            const bid = (Math.random() * 500).toFixed(2);
+            const ask = (parseFloat(bid) + 0.15).toFixed(2);
+            marketTbody.innerHTML += `
+                <tr>
+                    <td>${asset}</td>
+                    <td>${bid}</td>
+                    <td>${ask}</td>
+                    <td style="color: #8B0000">${(Math.random()*50).toFixed(1)}M</td>
+                </tr>
+            `;
+        });
+    }
+
+    // 2. LocalStorage News Logic
+    let savedNews = JSON.parse(localStorage.getItem('bbg_user_news')) || [];
+    function renderNews() {
+        if(!newsContainer) return;
+        newsContainer.innerHTML = '';
+        savedNews.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'user-msg-item';
+            div.innerHTML = `<span class="msg-time">${item.time}</span><span class="msg-body">${item.text}</span>`;
+            newsContainer.prepend(div);
+        });
+    }
+
+    inputField.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && inputField.value.trim() !== "") {
+            const newEntry = {
+                time: new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }),
+                text: inputField.value.toUpperCase()
+            };
+            savedNews.push(newEntry);
+            if (savedNews.length > 15) savedNews.shift();
+            localStorage.setItem('bbg_user_news', JSON.stringify(savedNews));
+            inputField.value = "";
+            renderNews();
+        }
+    });
+
+    setInterval(updateMarket, 2000);
+    updateMarket();
+    renderNews();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initBloombergLogic();
+});
+
+function initBloombergAnalytics() {
+    const ctx = document.getElementById('bbgLineChart').getContext('2d');
+    
+    // Generate data awal (100 poin) agar tidak kosong saat start
+    let dataPoints = Array.from({length: 100}, () => Math.floor(Math.random() * 50) + 150);
+    let labels = Array.from({length: 100}, (_, i) => i);
+
+    // Fungsi menghitung Moving Average sederhana
+    const calculateMA = (data, period) => {
+        return data.map((val, index) => {
+            if (index < period) return null;
+            const sum = data.slice(index - period, index).reduce((a, b) => a + b, 0);
+            return sum / period;
+        });
+    };
+
+    const bbgChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'PRICE',
+                    data: dataPoints,
+                    borderColor: '#FFB900',
+                    borderWidth: 1.5,
+                    pointRadius: 0,
+                    fill: false,
+                    tension: 0.4
+                },
+                {
+                    label: 'MA-20',
+                    data: calculateMA(dataPoints, 20),
+                    borderColor: '#8B0000',
+                    borderWidth: 1,
+                    borderDash: [5, 5],
+                    pointRadius: 0,
+                    fill: false
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+                x: { display: false },
+                y: { 
+                    grid: { color: '#111' },
+                    ticks: { color: '#444', font: { size: 8 } }
+                }
+            },
+            animation: { duration: 0 }
+        }
+    });
+
+    // Update secara real-time
+    setInterval(() => {
+        const nextPrice = dataPoints[dataPoints.length - 1] + (Math.random() * 10 - 5);
+        dataPoints.push(nextPrice);
+        dataPoints.shift();
+        
+        bbgChart.data.datasets[0].data = dataPoints;
+        bbgChart.data.datasets[1].data = calculateMA(dataPoints, 20);
+        bbgChart.update();
+    }, 1000);
+}
+
+// Tambahkan panggilannya di DOMContentLoaded Anda
+document.addEventListener('DOMContentLoaded', () => {
+    initBloombergAnalytics();
+});
+
+function renderNews() {
+    if(!newsContainer) return;
+    newsContainer.innerHTML = '';
+    
+    // Urutkan dari yang lama ke baru agar seperti chat normal
+    savedNews.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'user-msg-item';
+        div.innerHTML = `<span class="msg-time">${item.time}</span><span class="msg-body">${item.text}</span>`;
+        newsContainer.appendChild(div); // Gunakan appendChild agar pesan baru di bawah
+    });
+
+    // Auto scroll ke bawah setelah render
+    newsContainer.scrollTop = newsContainer.scrollHeight;
+}
+
+function initBloombergClock() {
+    const clockElement = document.getElementById('bbg-clock');
+    
+    if (clockElement) {
+        setInterval(() => {
+            const now = new Date();
+            // Format jam ala Bloomberg: HH:MM:SS (24 jam)
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            
+            clockElement.innerText = `${hours}:${minutes}:${seconds}`;
+        }, 1000);
+    }
+}
+
+// Pastikan dipanggil di dalam DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+    initBloombergClock();
+    // fungsi lainnya...
+});
+

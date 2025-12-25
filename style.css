@@ -589,6 +589,370 @@ h1, h2, h3, .nav-links a, .stat-box b, .btn-glass {
     color: #ff4444;
 }
 
+.ctrl-btn:active {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.ctrl-btn.danger:active {
+    background: rgba(255, 0, 0, 0.4);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+}
+
+.footer-stat b {
+    transition: all 0.3s ease;
+    display: inline-block;
+    min-width: 50px;
+}
+
+/* Label tambahan untuk Ask/Bid di UI */
+.spread-label {
+    font-size: 8px;
+    background: #fff;
+    color: #000;
+    padding: 0 4px;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+/* --- BLOOMBERG TERMINAL SECTION --- */
+.bloomberg-terminal {
+    margin-top: 50px;
+    margin-bottom: 100px;
+    background: #000;
+    border: 2px solid #333;
+    font-family: 'Courier New', Courier, monospace; /* Font mesin ketik khas Bloomberg */
+}
+
+.bbg-header {
+    background: #111;
+    color: #ffb900; /* Amber */
+    padding: 8px 15px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    border-bottom: 1px solid #333;
+}
+
+.bbg-nav-info span {
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.bbg-body {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr; /* Kiri lebih lebar */
+    height: 400px;
+    background: #000;
+}
+
+.bbg-panel {
+    border-right: 1px solid #333;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.news-alert-item {
+    padding: 8px;
+    border-bottom: 1px solid #222;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.alert-header {
+    display: flex;
+    justify-content: space-between;
+    color: #ffb900; /* Amber */
+    font-weight: bold;
+}
+
+.panel-title {
+    color: #00ffff; /* Cyan */
+    font-size: 11px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #222;
+}
+
+.bbg-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+}
+
+.bbg-table th {
+    text-align: left;
+    color: #888;
+    padding-bottom: 5px;
+}
+
+.bbg-table td {
+    padding: 4px 0;
+    color: #fff;
+}
+
+.up-trend { color: #00ff00 !important; }
+.down-trend { color: #ff0000 !important; }
+
+.bbg-news-list {
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+/* --- BLOOMBERG RE-THEME --- */
+.bloomberg-terminal {
+    background: #000;
+    border: 1px solid #333;
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 40px;
+}
+
+.bbg-header {
+    background: #000;
+    color: #FFB900; /* Amber */
+    border-bottom: 2px solid #FFB900;
+    padding: 10px;
+}
+
+.bbg-body {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    height: 500px; /* Tinggi tetap agar tidak ada gap */
+    background: #000;
+}
+
+.bbg-panel {
+    border: 1px solid #222;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-title {
+    color: #FFB900;
+    border-bottom: 1px solid #8B0000; /* Dark Red Line */
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+
+/* Table Styling */
+.bbg-table th { color: #8B0000; font-size: 10px; text-align: left; }
+.bbg-table td { 
+    color: #FFB900; 
+    font-size: 11px; 
+    padding: 6px 0; 
+    border-bottom: 1px solid #111;
+}
+
+/* News Styling */
+.user-msg-item {
+    border-left: 3px solid #8B0000; /* Dark Red Accent */
+    background: rgba(139, 0, 0, 0.1);
+    padding: 8px;
+    margin-bottom: 5px;
+}
+
+.msg-time { color: #8B0000; font-weight: bold; margin-right: 10px; }
+.msg-body { color: #FFB900; }
+
+.bbg-footer {
+    background: #000;
+    border-top: 2px solid #FFB900;
+    padding: 12px;
+}
+
+.cmd-prefix { color: #FFB900; font-weight: bold; }
+.bbg-input {
+    background: transparent;
+    border: none;
+    color: #FFB900;
+    outline: none;
+    width: 90%;
+    font-size: 14px;
+}
+
+/* Bloomberg L-Border & Layout Fix */
+.bbg-panel {
+    position: relative;
+    border: 1px solid #1a1a1a;
+    background: #000;
+    min-height: 550px; /* Memastikan full ke bawah */
+}
+
+/* Garis Putus-putus L-Border Futuristik */
+.bbg-panel::before {
+    content: "";
+    position: absolute;
+    top: -1px; left: -1px;
+    width: 20px; height: 20px;
+    border-top: 2px dashed #8B0000;
+    border-left: 2px dashed #8B0000;
+}
+
+.bbg-panel::after {
+    content: "";
+    position: absolute;
+    bottom: -1px; right: -1px;
+    width: 20px; height: 20px;
+    border-bottom: 2px dashed #8B0000;
+    border-right: 2px dashed #8B0000;
+}
+
+/* Container Panel Kanan */
+.right-news {
+    position: relative; /* Penting untuk anchoring input */
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 50px !important; /* Memberi ruang untuk input di bawah */
+}
+
+/* Kotak Input Pesan ala Chat Box */
+.bbg-chat-input-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #000;
+    border-top: 1px solid #8B0000; /* Garis Merah Bloomberg */
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bbg-input {
+    background: transparent;
+    border: none;
+    color: #FFB900;
+    outline: none;
+    width: 100%;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+}
+
+.cmd-prefix {
+    color: #FFB900;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+/* Pastikan scroll pesan tetap berfungsi */
+.bbg-news-scroll {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 5px;
+}
+
+#bbg-clock {
+    color: #FFB900; /* Warna Amber */
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(255, 185, 0, 0.5); /* Efek glow tipis */
+}
+
+/* Mini Chart Styling */
+.bbg-chart-mini-wrapper {
+    flex-grow: 1;
+    height: 180px;
+    margin-top: 10px;
+    background: rgba(139, 0, 0, 0.05);
+}
+
+.bbg-table td {
+    border-bottom: 1px solid #111;
+    line-height: 1; /* Rapatkan baris data */
+}
+
+.news-item {
+    margin-bottom: 8px;
+    border-left: 2px solid #ffb900;
+    padding-left: 8px;
+}
+
+.news-time { color: #ffb900; margin-right: 5px; }
+
+.bbg-footer {
+    background: #111;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #333;
+}
+
+.cmd-prefix {
+    color: #ffb900;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.bbg-input {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-family: monospace;
+    width: 100%;
+    outline: none;
+}
+
+.bbg-stat-item {
+    font-size: 10px;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10px;
+}
+
+.alert-urgent {
+    background: rgba(255, 0, 0, 0.2);
+    border-left: 3px solid #ff0000;
+}
+
+.news-text-content {
+    color: #fff;
+    line-height: 1.3;
+}
+
+/* News Alert Styling */
+.bbg-news-container {
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.bbg-grid-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    padding: 5px;
+    background: #111;
+    margin-bottom: 10px;
+}
+
+.bbg-item { font-size: 9px; display: flex; flex-direction: column; }
+.bbg-item span { color: #888; }
+.bbg-item b { color: #00ff00; }
+
+.bbg-news-scroll {
+    height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.user-msg-item {
+    padding: 6px;
+    border-left: 2px solid #ffb900;
+    background: rgba(255, 185, 0, 0.05);
+    font-size: 10px;
+}
+
+.msg-time { color: #ffb900; margin-right: 8px; font-weight: bold; }
+.msg-body { color: #fff; line-height: 1.2; }
+
+/* Menghilangkan scrollbar agar estetik terminal tetap terjaga */
+.bbg-news-scroll::-webkit-scrollbar { width: 0px; }
+
 /* Terminal Merah */
 .warning-terminal {
     background: rgba(255, 0, 0, 0.05);
@@ -808,3 +1172,16 @@ h1, h2, h3, .nav-links a, .stat-box b, .btn-glass {
   color: var(--muted);
   font-size: 10px;
 }
+
+/* --- LOGIN PAGE STYLING --- */
+.login-section {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    padding: 20px;
+}
+
